@@ -1,10 +1,37 @@
+# Dependencies
 node_modules/
-dist/
+package-lock.json
+
+# Environment variables
 .env
 .env.local
+.env.production
+
+# Build output
+dist/
+build/
+
+# Logs
+logs/
 *.log
+npm-debug.log*
+
+# Testing
 coverage/
 .nyc_output/
 cypress/videos/
 cypress/screenshots/
+
+# OS files
 .DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+temp/
+tmp/

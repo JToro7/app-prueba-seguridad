@@ -21,7 +21,7 @@ router.get('/courses',
   userController.getCourses
 );
 
-// Rutas de administrador
+// Rutas de administrador completas
 router.get('/admin/dashboard', 
   authorize(['admin']), 
   adminController.getDashboard
@@ -30,6 +30,46 @@ router.get('/admin/dashboard',
 router.get('/admin/users', 
   authorize(['admin']), 
   adminController.getUsers
+);
+
+router.get('/admin/users/:userId', 
+  authorize(['admin']), 
+  adminController.getUserById
+);
+
+router.put('/admin/users/:userId/role', 
+  authorize(['admin']), 
+  adminController.updateUserRole
+);
+
+router.put('/admin/users/:userId/status', 
+  authorize(['admin']), 
+  adminController.toggleUserStatus
+);
+
+router.get('/admin/logs', 
+  authorize(['admin']), 
+  adminController.getSystemLogs
+);
+
+router.get('/admin/alerts', 
+  authorize(['admin']), 
+  adminController.getSecurityAlerts
+);
+
+router.post('/admin/reports', 
+  authorize(['admin']), 
+  adminController.generateReport
+);
+
+router.get('/admin/health', 
+  authorize(['admin']), 
+  adminController.getSystemHealth
+);
+
+router.put('/admin/settings', 
+  authorize(['admin']), 
+  adminController.updateSystemSettings
 );
 
 module.exports = router;
