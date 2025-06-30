@@ -1,73 +1,48 @@
 
 ```
 app-prueba-seguridad
+├─ .eslintrc.json
+├─ .husky
+│  └─ _
+│     ├─ applypatch-msg
+│     ├─ commit-msg
+│     ├─ h
+│     ├─ husky.sh
+│     ├─ post-applypatch
+│     ├─ post-checkout
+│     ├─ post-commit
+│     ├─ post-merge
+│     ├─ post-rewrite
+│     ├─ pre-applypatch
+│     ├─ pre-auto-gc
+│     ├─ pre-commit
+│     ├─ pre-merge-commit
+│     ├─ pre-push
+│     ├─ pre-rebase
+│     └─ prepare-commit-msg
+├─ .prettierrc
+├─ app-prueba-seguridad.rar
 ├─ cypress
+│  ├─ downloads
 │  ├─ e2e
-│  │  ├─ auth.cy.js
-│  │  ├─ performance.cy.js
-│  │  └─ protected-routes.cy.js
+│  │  ├─ 01-authentication.cy.js
+│  │  ├─ 02-api-security.cy.js
+│  │  ├─ 03-user-interface.cy.js
+│  │  └─ 05-oauth-google.real.cy.js
 │  ├─ fixtures
+│  │  ├─ test-data.json
 │  │  └─ users.json
+│  ├─ setup-cypress.js
 │  └─ support
 │     ├─ commands.js
 │     └─ e2e.js
-├─ package-lock.json
-├─ package.json
-├─ public
-├─ src
-│  ├─ backend
-│  │  ├─ config
-│  │  │  └─ passport.js
-│  │  ├─ controllers
-│  │  │  ├─ auth.controller.js
-│  │  │  └─ user.controller.js
-│  │  ├─ middleware
-│  │  │  ├─ auth.middleeare.js
-│  │  │  ├─ error.hander.js
-│  │  │  ├─ rateLimiter.js
-│  │  │  └─ validation.js
-│  │  ├─ routes
-│  │  │  ├─ api.routes.js
-│  │  │  └─ auth.routes.js
-│  │  ├─ server.js
-│  │  ├─ services
-│  │  │  ├─ auth.service.js
-│  │  │  └─ user.service.js
-│  │  └─ utils
-│  │     └─ jwt.utils.js
-│  └─ frontend
-│     ├─ css
-│     │  └─ styles.css
-│     ├─ index-original.html
-│     ├─ index.html
-│     └─ js
-│        ├─ ApiClient.js
-│        ├─ app.js
-│        ├─ AuthClient.js
-│        ├─ Components.js
-│        └─ Config.js
-└─ tests
-   ├─ e2e
-   ├─ integration
-   └─ unit
-
-```
-```
-app-prueba-seguridad
-├─ cypress
-│  ├─ e2e
-│  │  ├─ auth.cy.js
-│  │  ├─ performance.cy.js
-│  │  └─ protected-routes.cy.js
-│  ├─ fixtures
-│  │  └─ users.json
-│  └─ support
-│     ├─ commands.js
-│     └─ e2e.js
-├─ package-lock.json
+├─ cypress.config.js
+├─ jest.config.js
+├─ jest.setup.js
 ├─ package.json
 ├─ public
 ├─ README.md
+├─ run-oauth-tests.js
 ├─ scripts
 │  ├─ build.sh
 │  └─ dev-setup.sh
@@ -80,8 +55,8 @@ app-prueba-seguridad
 │  │  │  ├─ auth.controller.js
 │  │  │  └─ user.controller.js
 │  │  ├─ middleware
-│  │  │  ├─ auth.middleware.js
-│  │  │  ├─ error.handler.js
+│  │  │  ├─ auth.js
+│  │  │  ├─ errorHandler.js
 │  │  │  ├─ rateLimiter.js
 │  │  │  └─ validation.js
 │  │  ├─ routes
@@ -106,13 +81,14 @@ app-prueba-seguridad
 │  │     ├─ Components.js
 │  │     └─ Config.js
 │  └─ index.js
-└─ tests
-   ├─ e2e
-   │  └─ smoke.test.js
-   ├─ integration
-   │  └─ auth-flow.test.js
-   └─ unit
-      ├─ auth.test.js
-      └─ user.test.js
+├─ tests
+│  ├─ e2e
+│  │  └─ smoke.test.js
+│  ├─ integration
+│  │  └─ auth-flow.test.js
+│  └─ unit
+│     ├─ auth.test.js
+│     └─ user.test.js
+└─ verify-oauth-config.js
 
 ```

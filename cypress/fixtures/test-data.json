@@ -1,0 +1,130 @@
+{
+  "users": {
+    "student": {
+      "email": "demo@universidad.edu",
+      "password": "Demo123!",
+      "role": "student",
+      "name": "Juan Pérez"
+    },
+    "admin": {
+      "email": "admin@universidad.edu", 
+      "password": "Admin123!",
+      "role": "admin",
+      "name": "María González"
+    },
+    "oauth": {
+      "email": "usuario.oauth@gmail.com",
+      "role": "user",
+      "name": "Usuario OAuth"
+    }
+  },
+  "apiResponses": {
+    "loginSuccess": {
+      "success": true,
+      "message": "Login exitoso",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.test",
+      "user": {
+        "id": 1,
+        "email": "demo@universidad.edu",
+        "role": "student",
+        "name": "Juan Pérez"
+      }
+    },
+    "profileResponse": {
+      "success": true,
+      "data": {
+        "id": 1,
+        "email": "demo@universidad.edu",
+        "name": "Juan Pérez",
+        "role": "student",
+        "matricula": "2021-001234",
+        "carrera": "Ingeniería en Sistemas",
+        "semestre": "8vo"
+      }
+    },
+    "settingsResponse": {
+      "success": true,
+      "data": {
+        "notifications": true,
+        "theme": "light",
+        "language": "es",
+        "twoFactorAuth": false,
+        "privacyLevel": "medium"
+      }
+    },
+    "adminResponse": {
+      "success": true,
+      "data": {
+        "activeUsers": 1234,
+        "newRegistrationsToday": 45,
+        "totalCourses": 89,
+        "systemHealth": "excellent",
+        "serverUptime": "15 días, 3 horas",
+        "databaseSize": "2.3 GB"
+      }
+    },
+    "statsResponse": {
+      "success": true,
+      "data": {
+        "usersByRole": {
+          "students": 1180,
+          "teachers": 45,
+          "admin": 9
+        },
+        "monthlyGrowth": {
+          "users": "+12%",
+          "courses": "+8%",
+          "activity": "+15%"
+        },
+        "topCourses": [
+          { "name": "Programación I", "students": 89 },
+          { "name": "Matemáticas", "students": 76 },
+          { "name": "Bases de Datos", "students": 65 }
+        ]
+      }
+    }
+  },
+  "errorResponses": {
+    "invalidCredentials": {
+      "error": "Credenciales inválidas",
+      "message": "Email o contraseña incorrectos"
+    },
+    "unauthorized": {
+      "error": "Token de acceso requerido",
+      "message": "No se proporcionó token de autenticación"
+    },
+    "forbidden": {
+      "error": "Acceso denegado",
+      "message": "Se requiere uno de los siguientes roles: admin"
+    },
+    "invalidToken": {
+      "error": "Token inválido",
+      "message": "El token proporcionado no es válido o ha expirado"
+    }
+  },
+  "testScenarios": {
+    "securityHeaders": [
+      "Authorization",
+      "Content-Type"
+    ],
+    "protectedEndpoints": [
+      "/api/profile",
+      "/api/settings", 
+      "/api/admin",
+      "/api/admin/stats",
+      "/api/admin/users"
+    ],
+    "publicEndpoints": [
+      "/api/info",
+      "/api/auth/login"
+    ],
+    "invalidTokens": [
+      "invalid-token",
+      "Bearer invalid",
+      "",
+      "malformed.token.here",
+      "Bearer ",
+      "NotBearer validtoken"
+    ]
+  }
+}
