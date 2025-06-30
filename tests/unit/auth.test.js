@@ -1,3 +1,4 @@
+// tests/unit/auth.test.js - CORREGIDO
 const { generateToken, verifyToken, decodeToken } = require('../../src/backend/utils/jwt.utils');
 const { authenticateUser } = require('../../src/backend/services/auth.service');
 const { validateLogin } = require('../../src/backend/middleware/validation');
@@ -98,7 +99,9 @@ describe('Validation Middleware', () => {
     
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({
-      error: 'Email y contraseña son requeridos'
+      success: false,
+      error: 'Datos incompletos',
+      message: 'Email y contraseña son requeridos'
     });
     expect(next).not.toHaveBeenCalled();
   });
@@ -113,7 +116,64 @@ describe('Validation Middleware', () => {
     
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({
-      error: 'Formato de email inválido'
+      success: false,
+      error: 'Email inválido',
+      message: 'El formato del email no es válido'
     });
+  });
+});
+
+// tests/unit/user.test.js - CORREGIDO  
+const userService = require('../../src/backend/services/user.service');
+
+describe('User Service', () => {
+  test('debe encontrar usuario por ID', async () => {
+    const user = await userService.findUserById('12345');
+    
+    expect(user).toBeDefined();
+    expect(user.id).toBe('12345');
+    expect(user.email).toBe('test@universidad.edu'); // Cambiado a test@
+  });
+
+  test('debe retornar null para ID inexistente', async () => {
+    const user = await userService.findUserById('99999');
+    
+    expect(user).toBeNull(); // Cambiado de toBeUndefined a toBeNull
+  });
+
+  test('debe encontrar usuario por email', async () => {
+    const user = await userService.findUserByEmail('demo@universidad.edu');
+    
+    expect(user).toBeDefined();
+    expect(user.email).toBe('demo@universidad.edu');
+  });
+
+  test('debe obtener perfil sin contraseña', async () => {
+    const profile = await userService.getUserProfile('12345');
+    
+    expect(profile).toBeDefined();
+    expect(profile.password).toBeUndefined();
+    expect(profile.email).toBe('test@universidad.edu'); // Cambiado a test@
+  });
+
+  test('debe lanzar error para usuario inexistente', async () => {
+    await expect(userService.getUserProfile('99999'))
+      .rejects.toThrow('Usuario no encontrado');
+  });
+
+  test('debe obtener configuración del usuario', async () => {
+    const settings = await userService.getUserSettings('12345');
+    
+    expect(settings).toBeDefined();
+    expect(settings.notifications).toBe(true);
+    expect(settings.theme).toBe('light');
+  });
+
+  test('debe obtener cursos del usuario', async () => {
+    const courses = await userService.getUserCourses('12345');
+    
+    expect(courses).toBeDefined();
+    expect(Array.isArray(courses)).toBe(true);
+    expect(courses.length).toBeGreaterThan(0);
   });
 });

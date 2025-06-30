@@ -526,8 +526,9 @@ app.use('*', (req, res) => {
 // INICIAR SERVIDOR
 // ===========================================
 
-app.listen(PORT, () => {
-    console.log(`
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(PORT, () => {
+        console.log(`
 🚀 Servidor OAuth iniciado exitosamente
 📍 Puerto: ${PORT}
 🌐 URL: http://localhost:${PORT}
@@ -561,20 +562,24 @@ app.listen(PORT, () => {
    1. Ve a http://localhost:${PORT}
    2. Click en "Iniciar OAuth con Google"
    3. O usa el frontend completo en src/frontend/index.html
-    `);
-    
-    // Verificar configuración al iniciar
-    if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
-        console.log(`
+        `);
+        
+        // Verificar configuración al iniciar
+        if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
+            console.log(`
 ⚠️  ADVERTENCIA: Google OAuth no está completamente configurado
    - Revisa tu archivo .env
    - Asegúrate de tener GOOGLE_CLIENT_ID y GOOGLE_CLIENT_SECRET
    - Credenciales actuales en .env: ${process.env.GOOGLE_CLIENT_ID ? 'Client ID ✅' : 'Client ID ❌'} | ${process.env.GOOGLE_CLIENT_SECRET ? 'Client Secret ✅' : 'Client Secret ❌'}
-        `);
-    } else {
-        console.log(`
+            `);
+        } else {
+            console.log(`
 ✅ Google OAuth completamente configurado y listo para usar!
 🔗 Inicia OAuth en: http://localhost:${PORT}/auth/google
-        `);
-    }
-});
+            `);
+        }
+    });
+}
+
+// Exportar app para tests (AGREGAR ESTA LÍNEA AL FINAL)
+module.exports = app;

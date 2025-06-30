@@ -7,10 +7,17 @@
     "dev": "nodemon src/backend/server.js",
     "start": "node src/backend/server.js",
     "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:unit": "jest tests/unit",
+    "test:integration": "jest tests/integration",
+    "test:smoke": "jest tests/e2e",
+    "test:verbose": "jest --verbose",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "test:e2e": "start-server-and-test dev http://localhost:3000 cypress:run",
     "test:e2e:open": "start-server-and-test dev http://localhost:3000 cypress:open",
+    "test:all": "npm run test && npm run test:e2e",
     "kill-port": "npx kill-port 3000",
     "dev:clean": "npx kill-port 3000 && npm run dev",
     "setup": "npm install && npm run kill-port"
@@ -23,9 +30,11 @@
     "authentication",
     "security",
     "google-oauth",
-    "passport"
+    "passport",
+    "jest",
+    "testing"
   ],
-  "author": "Tu Nombre",
+  "author": "James Toro Cantero",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -39,6 +48,12 @@
   },
   "devDependencies": {
     "cypress": "^13.6.0",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3",
+    "@types/jest": "^29.5.5",
+    "babel-jest": "^29.7.0",
+    "@babel/core": "^7.23.0",
+    "@babel/preset-env": "^7.23.0",
     "kill-port": "^2.0.1",
     "nodemon": "^3.0.1",
     "start-server-and-test": "^2.0.3"

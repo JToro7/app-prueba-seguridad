@@ -1,6 +1,7 @@
 
 ```
 app-prueba-seguridad
+├─ .babelrc
 ├─ .eslintrc.json
 ├─ .husky
 │  └─ _
@@ -28,7 +29,7 @@ app-prueba-seguridad
 │  │  ├─ 01-authentication.cy.js
 │  │  ├─ 02-api-security.cy.js
 │  │  ├─ 03-user-interface.cy.js
-│  │  └─ 05-oauth-google.real.cy.js
+│  │  └─ 04-oauth-google.cy.js
 │  ├─ fixtures
 │  │  ├─ test-data.json
 │  │  └─ users.json
